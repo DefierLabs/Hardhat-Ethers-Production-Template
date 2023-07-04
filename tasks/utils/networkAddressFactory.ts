@@ -2,7 +2,7 @@ import { ethereumAddress } from "../../test-utils/regex";
 import { AssetAddressTypes, Chain, Token, tokens } from "./tokens";
 
 export const contractNames = ["Deployer"] as const;
-export type ContractNames = typeof contractNames[number];
+export type ContractNames = (typeof contractNames)[number];
 
 export interface HardhatRuntime {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

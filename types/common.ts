@@ -8,13 +8,3 @@ export interface Account {
     signer: Signer
     address: string
 }
-
-// Booster.PoolInfo
-export type PoolInfo = {
-    lptoken: string;
-    token: string;
-    gauge: string;
-    crvRewards: string;
-    stash: string;
-    shutdown: boolean;
-};

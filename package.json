@@ -1,14 +1,12 @@
 {
-    "name": "@aurafinance/aura-contracts",
-    "description": "Aura Finance smart contracts",
+    "description": "A production ready hardhat + ethers template for solidity dev. based on Aura Finance' contracts repo",
     "version": "1.0.0",
     "scripts": {
-        "clean": "shx rm -rf ./artifacts ./cache ./coverage ./types/generated ./coverage.json ./contracts/convex-platform",
+        "clean": "shx rm -rf ./artifacts ./cache ./coverage ./types/generated ./coverage.json ",
         "reset": "yarn clean && yarn compile",
         "commit": "git-cz",
-        "compile": "yarn compile:cvx && yarn compile:aura  && yarn run compile:ts",
-        "compile:aura": "yarn hardhat compile --config hardhat.config.ts",
-        "compile:cvx": "yarn hardhat compile --config hardhat-cvx.config.ts",
+        "compile": "yarn compile:contracts  && yarn run compile:ts",
+        "compile:contracts": "yarn hardhat compile --config hardhat.config.ts",
         "compile:ts": "npx tsc",
         "coverage": "yarn typechain && hardhat coverage:externalSrc --solcoverjs ./.solcover.js --temp artifacts --testfiles 'test/**/*.ts'",
         "docgen": "yarn hardhat docgen",
@@ -31,7 +29,6 @@
     "dependencies": {
         "@types/lodash": "^4.14.185",
         "chalk": "^4.0.0",
-        "convex-platform": "file:convex-platform/contracts",
         "dayjs": "^1.11.7",
         "graphql": "^16.5.0",
         "graphql-request": "^4.3.0",

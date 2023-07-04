@@ -43,41 +43,46 @@ const config: HardhatUserConfig = {
         },
         mainnet: {
             chainId: chainIds.mainnet,
-            url: process.env.NODE_URL || "",
+            url: process.env.ETHEREUM_NODE_URL || "",
         },
         gnosis: {
             chainId: chainIds.gnosis,
-            url: process.env.NODE_URL || "",
+            url: process.env.GNOSIS_NODE_URL || "",
         },
         kovan: {
-            url: process.env.NODE_URL || "",
+            url: process.env.KOVAN_NODE_URL || "",
             gasPrice: 3000000000,
         },
         goerli: {
-            url: process.env.NODE_URL || "",
             gasPrice: 3000000000,
             chainId: chainIds.goerli,
+            url: process.env.GOERLI_NODE_URL || "",
         },
         arbitrum: {
             chainId: chainIds.arbitrum,
-            url: process.env.NODE_URL || "",
+            url: process.env.ARBITRUM_NODE_URL || "",
         },
         optimism: {
             chainId: chainIds.optimism,
-            url: process.env.NODE_URL || "",
+            url: process.env.OPTIMISM_NODE_URL || "",
         },
         polygon: {
             chainId: chainIds.polygon,
             gasPrice: 55000000000,
-            url: process.env.NODE_URL || "",
+            url: process.env.POLYGON_NODE_URL || "",
         },
         arbitrumGoerli: {
-            url: process.env.NODE_URL || "",
             gasPrice: 3000000000,
             chainId: chainIds.arbitrumGoerli,
+            url: process.env.ARBITRUM_GOERLI_NODE_URL || "",
         },
-        forking: { url: process.env.NODE_URL || "" },
-        rinkeby: { url: process.env.NODE_URL || "", gasPrice: 3000000000 },
+        forking: {
+            url: process.env.NODE_URL || "",
+        },
+        rinkeby: {
+            url: process.env.RINKEBY_NODE_URL || "",
+            gasPrice: 3000000000,
+        },
     },
     paths: {
         artifacts: "./artifacts",

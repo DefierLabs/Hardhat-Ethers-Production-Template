@@ -1,9 +1,8 @@
-import { BigNumberish, Signer } from "ethers";
+import { Signer } from "ethers";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import fetch from "node-fetch";
-import { ExtSystemConfig, Phase2Deployed } from "scripts/deploySystem";
-import { Account, IERC20__factory, MockERC20__factory } from "../types";
-import { simpleToExactAmount } from "./math";
+// import { ExtSystemConfig, Phase2Deployed } from "scripts/deploySystem";
+import { Account } from "../types";
 
 // impersonates a specific account
 export const impersonate = async (addr: string, fund = true): Promise<Signer> => {
@@ -34,42 +33,6 @@ export const impersonateAccount = async (address: string, fund = true): Promise<
         address,
     };
 };
-
-export async function impersonateAndTransfer(tokenAddress: string, from: string, to: string, amount: BigNumberish) {
-    const tokenWhaleSigner = await impersonateAccount(from);
-    const token = MockERC20__factory.connect(tokenAddress, tokenWhaleSigner.signer);
-    await token.transfer(to, amount);
-}
-
-async function getEth(config: ExtSystemConfig, recipient: string) {
-    const ethWhale = await impersonate(config.weth);
-    await ethWhale.sendTransaction({
-        to: recipient,
-        value: simpleToExactAmount(1),
-    });
-}
-
-export async function getBal(config: ExtSystemConfig, to: string, amount: BigNumberish) {
-    await getEth(config, config.balancerVault);
-    const tokenWhaleSigner = await impersonateAccount(config.balancerVault);
-    const crv = IERC20__factory.connect(config.token, tokenWhaleSigner.signer);
-    await crv.transfer(to, amount);
-}
-
-export async function getAuraBal(phase2: Phase2Deployed, config: ExtSystemConfig, to: string, amount: BigNumberish) {
-    const acc = await impersonateAccount(config.balancerVault, true);
-    const auraBal = IERC20__factory.connect(phase2.cvxCrv.address, acc.signer);
-    await auraBal.transfer(to, amount);
-}
-
-export async function getAura(phase2: Phase2Deployed, config: ExtSystemConfig, to: string, amount: BigNumberish) {
-    const acc = await impersonateAccount(config.balancerVault, true);
-    const auraBal = IERC20__factory.connect(phase2.cvx.address, acc.signer);
-    await auraBal.transfer(to, amount);
-}
-
-export const getCrv = getBal;
-export const getCvx = getAura;
 
 export async function forkWithTenderly(hre: HardhatRuntimeEnvironment, startBlock: number) {
     console.log("Forking with tenderly");

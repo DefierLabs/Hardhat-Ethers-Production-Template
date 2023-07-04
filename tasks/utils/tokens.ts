@@ -14,6 +14,6 @@ export interface Token {
 }
 
 export const assetAddressTypes = ["address"] as const;
-export type AssetAddressTypes = typeof assetAddressTypes[number];
+export type AssetAddressTypes = (typeof assetAddressTypes)[number];
 
 export const tokens: Array<Token> = [];

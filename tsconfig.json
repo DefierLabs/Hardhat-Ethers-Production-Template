@@ -37,7 +37,6 @@
         "./index.ts",
         "./hardhat.config.ts",
         "./hardhat-fork.config.ts",
-        "./hardhat-cvx.config.ts",
         "./tasks.config.ts",
         "./tasks-fork.config.ts"
     ]

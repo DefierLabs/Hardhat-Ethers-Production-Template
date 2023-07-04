@@ -3,7 +3,6 @@ import { Contract, ContractFactory, ContractReceipt, ContractTransaction, Overri
 import { formatUnits } from "@ethersproject/units";
 
 import { Create2Factory } from "../../types";
-import { ExtSystemConfig } from "../../scripts/deploySystem";
 import { getAddress } from "@ethersproject/address";
 import { keccak256 as solidityKeccak256 } from "@ethersproject/solidity";
 import { BytesLike } from "@ethersproject/bytes";
@@ -135,16 +134,6 @@ export const logTxDetails = async (tx: ContractTransaction, method: string): Pro
 
     return receipt;
 };
-
-export function logExtSystem(system: ExtSystemConfig) {
-    const keys = Object.keys(system);
-    console.log(`\n~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
-    console.log(`~~~~~~~ EXT  SYSTEM ~~~~~~~`);
-    console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~\n`);
-    keys.map(k => {
-        console.log(`${k}:\t${system[k]}`);
-    });
-}
 
 export function logContracts(contracts: { [key: string]: { address: string } }) {
     const keys = Object.keys(contracts);
